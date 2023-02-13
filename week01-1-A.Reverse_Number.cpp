@@ -1,5 +1,5 @@
 ///Input a positive integer, arrange all the digits of the integer in reverse order to form a new integer, and calculate the result of adding the two.
-///Number range: Integer 1 ¡V 10000
+///Number range: Integer 1 to 10000
 #include <stdio.h>
 int main()
 {
