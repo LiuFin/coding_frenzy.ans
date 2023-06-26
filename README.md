@@ -525,7 +525,7 @@ int main(){
 	}
 }
 ```
-## 06除惡務盡
+## 06 除惡務盡
 輸入一個字串，將所有字元2去除後輸出。
 ```cpp
 #include <stdio.h>
@@ -540,3 +540,199 @@ int main(){
 	printf("\n");
 }
 ```
+## 07 擲骰統計
+輸入一字串為擲骰的結果，統計1到6點出現的狀況。
+```cpp
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char line[100];
+	int a[10]={0};
+	scanf("%s",line);
+	int N=strlen(line);
+	for(int i=0;i<N;i++){
+		if(line[i]>='1' && line[i]<='6') a[line[i]-'0']++;
+	}
+	for(int i=1;i<=6;i++) printf("%d:%d\n",i,a[i]);
+}
+```
+## 08 函數判斷質數
+設計一個函數prime(n)，可以判斷n是否為質數：如果是質數則回傳1，否則回傳0。
+```cpp
+/* 下方 C++ 的 main 函數 等價於 再下方 C 的 main 函數
+int main(void){
+    int n;
+    scanf("%d", &n);
+    printf("[%d]", prime(n));
+    return 0;
+}
+*/
+#include <iostream>
+using namespace std;
+int prime(int n){
+	int bad=0;
+	for(int i=2;i<n;i++){
+		if(n%i==0) bad=1;
+	}
+	if(bad==0) return 1;
+	if(bad==1) return 0;
+}
+int main(){
+  int n;cin>>n;
+  cout<<"["<<prime(n)<<"]";
+  return 0;
+}
+```
+## 09 函數找整數的最大數字
+設計一個函數max_digit(n)，找出組成正整數n中的最大數字，例如：183的最大數字為8。
+```cpp
+/* 下方C++ 的 main 函數 等價於 再下方 C 的 main 函數
+int main(void){
+  int n;
+  scanf("%d", &n);
+  printf("[%d]", max_digit(n));
+  return 0;
+}
+*/
+#include<iostream>
+using namespace std;
+int max_digit(int n){
+	int m,max=-99999;
+	while(n!=0){
+		m=n%10;
+		if(m>max) max=m;
+		n/=10;
+	}
+	return max;
+}
+int main(){
+  int n;cin>>n;
+  cout<<"["<<max_digit(n)<<"]";
+  return 0;
+}
+```
+## 10 判斷迴文
+讀入一個至多80個字的字串，判斷字串是否為迴文(即由左而右，由右而左，順序相同，大小寫字母視為相異)。如果是迴文則輸出YES，如果不是則輸出NO。
+```cpp
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char line[80];
+	scanf("%s",line);
+	int N=strlen(line);
+	int bad=0;
+	for(int i=0;i<N;i++){
+		if(line[i]!=line[N-i-1]) bad=1;
+	}
+	if(bad==0) printf("YES");
+	else printf("NO");
+}
+```
+## 11 字串中的數字個數
+讀入一個至多80個字的字串，找出字串中有多少個數字。
+```cpp
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char line[80];
+	int sum=0;
+	scanf("%s",line);
+	int N=strlen(line);
+	for(int i=0;i<N;i++){
+		if(line[i]>='0' && line[i]<='9') sum++;
+	}
+	printf("%d\n",sum);
+}
+```
+## 12 星星等腰三角
+輸入1個正整數n，作為輸出星星三角的層數
+```cpp
+#include <stdio.h>
+int main(){
+	int n;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++){
+		int star=i*2-1;
+		int space=n-i;
+		for(int j=0;j<space;j++) printf(" ");
+		for(int k=0;k<star;k++) printf("*");
+		printf("\n");
+	}
+}
+```
+## 13 利用自訂函式最大值max與最小值min求出兩者之差
+輸入四個正整數後，利用函式判斷最大值與最小值，並輸出最大值減最小值之差
+```cpp
+/* 下方C++ main 函式 等同於 再下方 C 的 main 函式
+int main(void){
+  int a, b, c, d;
+  scanf("%d %d %d %d", &a, &b, &c, &d);
+  printf("%d",  max(a,b,c,d) - min(a,b,c,d) );
+  return 0;
+}
+*/
+#include<iostream>
+using namespace std;
+int max(int a,int b,int c,int d){
+	int max=-99999;
+	if(a>max) max=a;
+	if(b>max) max=b;
+	if(c>max) max=c;
+	if(d>max) max=d;
+	return max;
+}
+int min(int a,int b,int c,int d){
+	int min=99999;
+	if(a<min) min=a;
+	if(b<min) min=b;
+	if(c<min) min=c;
+	if(d<min) min=d;
+	return min;
+}
+int main(){
+  int a,b,c,d;cin>>a>>b>>c>>d;
+  cout<<(max(a,b,c,d)-min(a,b,c,d));
+  return 0;
+}
+```
+## 14 奇數之和
+輸入一個整數N，輸出由1至N中間的奇數和。
+```cpp
+#include <stdio.h>
+int main(){
+	int n,sum=0;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++){
+		if(i%2==1) sum+=i;
+	}
+	printf("%d",sum);
+}
+```
+## 15 兩數間可被7整除的數
+輸入兩個整數，找出兩數之間所有可能被7整除的整數。
+``` cpp
+#include <stdio.h>
+int main(){
+	int a,b;
+	scanf("%d%d",&a,&b);
+	for(int i=a;i<=b;i++){
+		if(i%7==0) printf("%d ",i);
+	}
+}
+```
+## 16 數字個數
+設計一個程式，該程式可以連續讀入正整數(輸入0表示結束，至多不超過10個正整數)，之後顯示所輸入正整數的個數。
+```cpp
+#include <stdio.h>
+int main(){
+	int n,m=0;
+	for(int i=0;i<10;i++){
+		scanf("%d",&n);
+		if(n==0) break;
+		m++;
+	}
+	printf("%d",m);
+}
+```
+# 基礎題 2
+## 01 
