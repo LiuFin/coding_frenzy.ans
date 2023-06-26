@@ -1,16 +1,15 @@
-///¿é¤J¤À¦¡ªº¤À¤l¤Î¤À¥À(¤À¥À¤£¥i¬°0)¡A±N¨ä¤ÆÂ²«áªº¤À¦¡¿é¥X¡C
-///¼Æ¦r½d³ò¡G¾ã¼Æ1 ¡V 10000
+///è¼¸å…¥åˆ†å¼çš„åˆ†å­åŠåˆ†æ¯(åˆ†æ¯ä¸å¯ç‚º0)ï¼Œå°‡å…¶åŒ–ç°¡å¾Œçš„åˆ†å¼è¼¸å‡ºã€‚
+///æ•¸å­—ç¯„åœï¼šæ•´æ•¸1 â€“ 10000
 #include <stdio.h>
 int main()
 {
-	int a,b,c,d,temp;
+	int a,b;
 	scanf("%d%d",&a,&b);
-	c=a;
-	d=b;
-	while(c%=d){
-		temp=c;
-		c=d;
-		d=temp;
+	for(int i=a;i>=1;i--){
+		if(a%i==0 && b%i==0){
+			a=a/i;
+			b=b/i;
+		}
 	}
-	printf("%d %d\n",a/d,b/d);
+	printf("%d %d\n",a,b);
 }
