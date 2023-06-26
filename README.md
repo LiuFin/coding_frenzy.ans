@@ -443,3 +443,100 @@ int main()
 	else printf("F\n");
 }
 ```
+# 進階題 2
+## 01 判斷大小
+寫一方法能傳入2個整數，如果第一個數字比第二個數字小，則回傳-1;如果兩個數字相等，則回傳0; 如果第一個數字比第二個數字大，則回傳1。印出比較後的結果。 
+```cpp
+#include <stdio.h>
+int f(int a,int b){
+	if(a<b) return -1;
+	else if(a==b) return 0;
+	else return 1;
+}
+int main(){
+    int a, b;
+    scanf("%d %d", &a, &b);
+    printf("%d",f(a,b));
+    return 0;
+}
+```
+## 02 陣列全距
+寫一陣列大小為6，依序輸入陣列元素，計算陣列元素最大值與最小值的差距
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,c=0,b=9999;
+	while(scanf("%d",&a)==1){
+		if(a>c)c=a;
+		if(a<b)b=a;
+	}
+
+	printf("%d",c-b);
+}
+```
+## 03 計算一列整數的總和
+請撰寫一個程式計算並印出數個整數的加總。假設以999當成警示值。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a=0,sum=-999;
+	while(a!=999){
+		printf("Enter an integer ( 999 to end ): \n");
+		scanf("%d",&a);
+		sum+=a;
+	}
+	printf("The total is: %d",sum);
+}
+```
+## 04 最大公因數gcd
+輸入二整數 a b，輸出a b最大公因數
+```cpp
+#include <stdio.h>
+int gcd(int a,int b){
+	if(a==0) return b;
+	if(b==0) return a;
+	return gcd(b,a%b);
+}
+int main(){
+	int a,b;
+	printf("Enter two integers: \n");
+	scanf("%d%d",&a,&b);
+	printf("The greatest common divisor of %d and %d is %d\n",a,b,gcd(a,b));
+}
+```
+## 05 字串長度
+輸入兩個很大的正整數a與 b，如果a>b則輸出 1，如果 a<b則輸出 -1, 如果 a=b 則輸出 0。 (暗示：可用字串輸入，用字串的觀點來比大小。)
+```cpp
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char line1[100],line2[100];
+	scanf("%s%s",line1,line2);
+	int N1=strlen(line1);
+	int N2=strlen(line2);
+	if(N1>N2) printf("1");
+	if(N1<N2) printf("-1");
+	if(N1==N2){
+		if(line1[0]>line2[0]) printf("1");
+		if(line1[0]<line2[0]) printf("-1");
+		else printf("0");
+	}
+}
+```
+## 06除惡務盡
+輸入一個字串，將所有字元2去除後輸出。
+```cpp
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char line[100];
+	scanf("%s",line);
+	int N=strlen(line);
+	for(int i=0;i<N;i++){
+		if(line[i]!='2') printf("%c",line[i]);
+	}
+	printf("\n");
+}
+```
