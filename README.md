@@ -398,3 +398,48 @@ int main()
 	printf("%d\n",a-c);
 }
 ```
+## 10 找倍數
+連續讀入10個整數(1 – 1000)，找出所讀入的整數有幾個是3的倍數。 
+整數範圍：1 – 1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,ans=0;
+	for(int i=0;i<10;i++){
+		scanf("%d",&n);
+		if(n%3==0)ans++;
+	}
+	printf("%d\n",ans);
+}
+```
+## 11 判斷大小
+輸入2個整數，如果第一個數字比第二個數字小；則出輸-1，如果兩個數字相等，則輸出0；如果第一個數字比第二數字大，則出輸1。 
+數字範圍：1 – 1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b;
+	scanf("%d%d",&a,&b);
+	if(a<b)printf("-1\n");
+	else if(a==b)printf("0\n");
+	else printf("1\n");
+}
+```
+## 12 整數轉換為等級
+輸入一個整數。
+如果所輸入的整數大於或等於90，則輸出A；如果輸入的整數小於90但大於或等於80則輸出B，如果小於80但大於或等於60，則輸出C。
+如為其他整數，則輸出F。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	if(n>=90)printf("A\n");
+	else if(n<90&&n>=80)printf("B\n");
+	else if(n<80&&n>=60)printf("C\n");
+	else printf("F\n");
+}
+```
