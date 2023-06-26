@@ -103,3 +103,140 @@ int main(void)
 	return 0;
 }
 ```
+## 06
+輸入正整數n，計算1*2+2*3+3*4+…+(n-1)*n之和。
+數字範圍：整數1 – 1000
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,ans=0;
+	scanf("%d",&n);
+	for(int i=1;i<n;i++){
+		ans+=i*(i+1);
+	}
+	printf("%d\n",ans);
+}
+```
+## 07
+題目內容：從鍵盤讀入1個4位數的整數(1000-9999)。
+如果該數字構成廻文(即由左而右，由右而左，順序相同)，則顯示YES。如果該數字未構成廻文，則顯示NO。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	if(n/1000==n%10&&n/100%10==n%100/10)printf("YES\n");
+	else printf("NO\n");
+}
+```
+## 08
+題目名稱：絕對值函數。
+題目內容：設計一個函數f(n)，會回傳n的絕對值。
+數字範圍：整數1 – 10000
+程式限制：不得使用abs()函數。不得變更已給定的主程式。
+```cpp
+/*主程式：
+int main(void)
+{
+	int n;
+	scanf("%d",&n);
+	printf("[%d]",f(n));
+	return 0;
+}
+*/
+#include <stdio.h>
+int f (int a)
+{
+	if(a>0) return a;
+	else return -a;
+}
+int main(void)
+{
+	int n;
+	scanf("%d",&n);
+	printf("[%d]",f(n));
+	return 0;
+}
+```
+## 09
+設計一個函數f(n)，該函數可以傳回整數n的數字反序排列所組成的整數。
+數字範圍：整數 1 – 9999 (不含10的倍數)
+```cpp
+#include <stdio.h>
+int f(int n)
+{
+	int b=0;
+	while(n){
+		b=b*10+n%10;
+		n/=10;
+	}
+	return b;
+}
+
+int main()
+{
+	int a;
+	scanf("%d",&a);
+	printf("%d\n",f(a));
+}
+```
+## 10
+輸入一個整數N，再依序輸入N個整數置於陣列中，計算各元素的平方值，再列出此算出平方值後的陣列。
+數字範圍：整數N範圍 1 – 10；其他整數1 – 100
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,a[10];
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		scanf("%d",&a[i]);
+		a[i]*=a[i];
+	}
+	for(int i=0;i<n;i++)printf("%d,",a[i]);
+	printf("\n");
+}
+```
+## 11
+讀入一個0000 ~ 1111的2進位整數(固定4位數)，請顯示出對應的10進位數字。
+數字範圍：0000 – 1111
+```cpp
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int a,b=0,i=0,sum=0;
+	scanf("%d",&a);
+	while(a)
+	{
+		b=a%10;
+		a/=10;
+		sum+=b*pow(2,i);
+		i++;
+	}
+	printf("%d\n",sum);
+}
+```
+## 12
+讀入一個正整數的數列(逐一輸入正整數，輸入0表示結束，數列至多包含10個整數)
+之後再讀入一個正整數，程式可以找出該整數出現在數列中的次數。
+數字範圍：正整數 1 – 9
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a[10],b,i=0,sum=0;
+	scanf("%d",&b);
+	while(b){
+		a[i++]=b;
+		scanf("%d",&b);
+	}
+	scanf("%d",&b);
+	for(int j=0;j<i;j++){
+		sum+=(a[j]==b);
+	}
+	printf("%d\n",sum);
+}
+```
