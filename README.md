@@ -943,4 +943,252 @@ int main(){
 }
 ```
 # 進階題 3
-## 01 
+## 01 判斷平方數
+讀入一個1 – 1000000的數字，判斷該數字是否為某數字的平方數：如果是，則印出該數字為哪個數字的平方數；如果不是，則印出0。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,m;
+	scanf("%d",&n);
+	for(int i=1;i<n;i++){
+		if(n==i*i){
+			printf("%d",i);
+			m=1;
+		}
+	}
+	if(m!=1)printf("0");
+}
+```
+## 02 計算質數個數
+從鍵盤讀入2個 2 - 10000的數字，請計算出兩數字間(含兩數字，假設第2個數字較大)，有幾數字是質數。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,ans=0;
+	scanf("%d%d",&a,&b);
+	for(int i=a;i<=b;i++){
+		int bad=0;
+		for(int j=2;j<i;j++){
+			if(i%j==0)bad++;
+		}
+		if(bad==0)ans++;
+	}
+	printf("%d\n",ans);
+}
+```
+## 03 三數組合
+讀入三個 0 - 9 的數字，將其組合成最大的數字，並計算將該數字加1的結果。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,c,temp;
+	scanf("%d%d%d",&a,&b,&c);
+	if(a<c){
+		temp=a;
+		a=c;
+		c=temp;
+	}
+	if(a<b){
+		temp=a;
+		a=b;
+		b=temp;
+	}
+	if(b<c){
+		temp=b;
+		b=c;
+		c=temp;
+	}
+	printf("%d",a*100+b*10+c+1);
+}
+```
+## 04 求11 +22+33+…+nn。
+題目內容：請計算11+22+33+…+nn的值。數字範圍：整數1-9。
+```cpp
+#include <stdio.h>
+int main(){
+	int n,sum=0;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++){
+		sum+=i*11;
+	}
+	printf("%d",sum);
+}
+```
+## 05 求兩數之最大公因數
+輸入a, b兩數，請用函數式設計，求兩數之最大公因數，a ,b > 0。
+```cpp
+#include <iostream>
+using namespace std;
+int GCD(int a, int b){
+  if(a==0)return b;
+  if(b==0)return a;
+  return GCD(b,a%b);
+}
+int main(){
+  int a,b;cin>>a>>b;
+  cout<<GCD(a,b)<<endl;
+  return 0;
+}
+```
+## 06 區間測速-超速之王
+題目內容：龜山區萬壽路1段裝設區間測速器，長度1.2公里，量得10輛車通過的秒數(輸入10個整數)。
+請輸出第幾輛車最快的，並把它的時速印出來(只印整數部分，小數部分無條件捨去)。
+(時速的單位是每小時幾公里( km/hour)。1小時有60分鐘，1分鐘有60秒，輸入的是秒數) 數字範圍：整數1 – 1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a[10],fasti=0,speed;
+	for(int i=0;i<10;i++)scanf("%d",&a[i]);
+	for(int i=1;i<10;i++)if(a[fasti]>a[i])fasti=i;
+	speed=60*60*1.2/a[fasti];
+	printf("%d %d\n",fasti+1,speed);
+}
+```
+## 07 10數排序，從大到小排好
+題目內容：輸入10個數字，把它們從大到小排好。數字範圍：整數1 – 100。
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a[10];
+	for(int i=0;i<10;i++)scanf("%d",&a[i]);
+	for(int i=0;i<10;i++){
+		for(int j=i+1;j<10;j++){
+			if(a[i]<a[j]){
+				int temp=a[i];
+				a[i]=a[j];
+				a[j]=temp;
+			}
+		}
+	}
+	for(int i=0;i<10;i++)printf("%d ",a[i]);
+}
+```
+## 08 奇數反流
+題目內容：輸入一個整數N，後接N個整數。請將這N個數中的奇數，依照出現順序反向印出。數字範圍：N與整數的範圍 為 1 – 99。
+```cpp
+#include <stdio.h>
+int n,a[100],b[100],j;
+int main()
+{
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		scanf("%d",&a[i]);
+		if(a[i]%2!=0){
+			b[j]=a[i];
+			j++;
+		}
+	}
+	for(int i=j-1;i>=0;i--){
+		printf("%d ",b[i]);
+	}
+}
+```
+## 09 大位王
+題目內容：題目內容：輸入一個整數，輸出該整數的最大位的數字。數字範圍：整數 9999 ~ -9999。
+輸入：-357，輸出：3
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	if(n<0)n=-n;
+	while(n){
+		if(n/10==0)break;
+		else n/=10;
+	}
+	printf("%d\n",n);
+}
+```
+## 10 億萬富翁
+題目內容：有一個富翁的財產超過一萬億，所以常常搞不清楚財產到底有多少，現在輸入一個整數N表示富翁的財產總額，請您幫他在財產總額上，從後方每三位加一個逗號，方便閱讀。數字範圍：整數N範圍 為 1000000000000 – 999000000000000。
+```cpp
+#include <stdio.h>
+int main()
+{
+	long long int n;
+	scanf("%lld",&n);
+	printf("%lld,%lld,%lld,%lld,%lld",n/1000000000000,n%1000000000000/1000000000,n%1000000000/1000000,n%1000000/1000,n%1000);
+}
+```
+## 11 秒數換算
+題目內容：輸入總秒數(介於0~80000 之間的整數)，將其轉換成時:分:秒格式。數字範圍：秒數範圍0~80000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a;
+	scanf("%d", &a);
+	printf("%02d:%02d:%02d", a/3600, (a%3600)/60, a%60);
+}
+```
+## 12 大於漸增數列總和之最小整數
+題目名稱：大於漸增數列總和之最小整數題目內容：輸入一個整數K，找出最小整數N，使得1+2+3+…+N 的總和大於K。
+Ex.N=1 , 1=1<=K N=2 , 1+2=3 <=K N=3 , 1+2+3=6 <=k N=4 , 1+2+3+4=10 <=K N=5 , 1+2+3+4+5=15 > K 數字範圍：整數K範圍 10-1000 
+輸入：10，輸出：5
+```cpp
+#include <stdio.h>
+int sum(int N)
+{
+	int ans=0;
+	for(int i=1;i<=N;i++){
+		ans+=i;
+	}
+	return ans;
+}
+int main()
+{
+	int K;
+	scanf("%d",&K);
+	int ans=0;
+	for(int N=1;N<=100;N++){
+		if(sum(N)>K){
+			ans=N;
+			break;
+		}
+	}
+	printf("%d",ans);
+}
+```
+## 13 計算級數的值
+題目內容：定義級數 f(n)=1+3+5+...+(2*n+1) 。
+例如: f(1)=1+3=4 f(2)=1+3+5=9 f(3)=1+3+5+7=16 f(4)=1+3+5+7+9=25; f(5)=1+3+5+7+9+11=36 。
+請完成一個程式的設計，使得當使用者自鍵盤輸入一個小於1520的任意正整數n時，會印出f(n)的值。
+輸入：4，輸出：f(4)=25
+```cpp
+#include <stdio.h>
+int main()
+{
+	int ans=1,n;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)ans+=(2*i+1);
+	printf("f(%d)=%d",n,ans);
+}
+```
+## 14 拆解輸入的正整數
+題目內容：輸入一個不大於20000的正整數後，依據下述要求印出其結果。
+輸入：153，輸出：3 50 100 。
+輸入 1503，輸出：3 0 50 100 。
+```cpp
+#include <stdio.h>
+int a[5]={1,10,100,1000,10000};
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	for(int i=0;i<5;i++){
+	if(n<=0)break;
+	int now=n%10;
+	printf("%d ",now*a[i]);
+	n/=10;
+	}
+	return 0;
+}
+```
+# 基礎題 3
+## 01
