@@ -1191,4 +1191,199 @@ int main()
 }
 ```
 # 基礎題 3
-## 01
+## 01 找千位數
+讀入 1000 - 100000 的數字，找出其千位數的數字
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	printf("%d",n/1000%10);
+}
+```
+## 02 正整數平方總和
+題目內容：輸入正整數n，可計算：1*1+2*2+...+n*n 之總和的結果。數字範圍：整數1~1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,ans=0;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)ans+=i*i;
+	printf("%d",ans);
+}
+```
+## 03 兩數之間的3倍數總和
+題目內容：請輸入兩個由小到大的正整數(起始數字與終止數字)，可計算出【起始數字】到【中止數字】間所有3的倍數之總和。
+{ex. 3 9 => 3+6+9=18} 數字範圍：整數1~1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,ans=0;
+	scanf("%d%d",&a,&b);
+	for(int i=a;i<=b;i++)if(i%3==0)ans+=i;
+	printf("%d",ans);
+}
+```
+## 04 判斷座標的象限
+題目內容：判斷所輸入座標(x,y)的所在象限，(僅考慮在四個象限的情況，不考慮在軸線及原點的情況)。
+{ex.(1,1)屬第一象限、(-1,1)屬第二象限、(-1,-1)屬第三象限、(1,-1)屬第四象限} 數字範圍：整數 -1000~1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int x,y;
+	scanf("%d%d",&x,&y);
+	if(x>0){
+		if(y>0)printf("1\n");
+		else printf("4\n");
+	}
+	else {
+		if(y>0)printf("2\n");
+		else printf("3\n");
+	}
+}
+```
+## 05 求n之所有因數和
+輸入n (n>0)， 求 n之所有因數和。{ex. 2之因數為1、2，因數和為因數加總1+2=3} 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,ans=0;
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)if(n%i==0)ans+=i;
+	printf("%d",ans);
+}
+```
+## 06 輸入西元y年，判斷該y年是否為閏年
+輸入西元y年，判斷該y年是否為閏年，輸出相對訊息。
+{閏年定義：西元年份除以4可整除，且除以100不可整除，為閏年。 西元年份除以100可整除，且除以400不可整除，為平年}
+```cpp
+#include <stdio.h>
+int main()
+{
+	int y;
+	scanf("%d",&y);
+	if(y%400==0)printf("%d is a leap year.\n",y);
+	else if(y%100==0)printf("%d is not a leap year.\n",y);
+	else if(y%4==0)printf("%d is a leap year.\n",y);
+	else printf("%d is not a leap year.\n",y);
+}
+```
+## 07 把數字倒著印出來
+題目內容：輸入10個整數，把這10個數字倒著印出來。數字範圍：整數1 – 100 
+```cpp
+#include <stdio.h>
+int a[10];
+int main()
+{
+	for(int i=0;i<10;i++)scanf("%d",&a[i]);
+	for(int i=9;i>=0;i--)printf("%d ",a[i]);
+}
+```
+## 08 區間測速
+題目內容：龜山區萬壽路1段裝設區間測速器，長度1.2公里，輸入1個整數(車輛通過該區間所行駛的秒數)。
+輸出它的時速印出來(只印整數部分，小數部分無條件捨去)。
+(時速的單位是每小時幾公里( km/hour)。1小時有60分鐘，1分鐘有60秒，輸入的是秒數) 數字範圍：整數1 – 1000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,s;
+	scanf("%d",&n);
+	s=60*60*1.2/n;
+	printf("%d",s);
+}
+```
+## 09 水杯接水
+題目內容：有一桶水要分裝到杯子中，水桶中的水有N毫升，杯子的容量為M毫升，請問至少需要幾個杯子才能承接水桶裡的水。
+現在輸入N與M，請輸出答案。數字範圍：N為1 – 9999，M為1 –99 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int n,m,ans=0;
+	scanf("%d%d",&n,&m);
+	if(n%m==0)ans=n/m;
+	else ans=n/m+1;
+	printf("%d",ans);
+}
+```
+## 10 平面兩座標的面積
+題目內容：輸入平面兩點座標的四個整數值(x1,y1,x2,y2)，計算並顯示這兩點所圍之面積。
+(EX.輸入(x1,y1,x2,y2)，計算(x1,y1)、(x1,y2)、(x2,y2)、(x2,y1)所圍面積。) 數字範圍：整數1 –100 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,c,d,ans;
+	scanf("%d%d%d%d",&a,&b,&c,&d);
+	ans=(c-a)*(d-b);
+	if(ans<0)ans=-ans;
+	printf("%d",ans);
+}
+```
+## 11 整數向量相加
+題目內容：輸入一個整數N，再依序讀入兩筆各有N個整數的向量，輸出此兩筆向量和。數字範圍：整數N範圍 1–10；其他整數1–100 
+```cpp
+/*
+輸入：
+3
+1 2 3
+4 5 6
+輸出：5 7 9 
+*/
+#include <stdio.h>
+int main()
+{
+	int n,a[10],b[10];
+	scanf("%d",&n);
+	for(int i=0;i<n;i++)scanf("%d",&a[i]);
+	for(int i=0;i<n;i++){
+		scanf("%d",&b[i]);
+		a[i]+=b[i];
+	}
+	for(int i=0;i<n;i++)printf("%d ",a[i]);
+}
+```
+## 12 計算一組任意數目的整數的總和
+題目內容：輸入一組以0為結尾的任意數目的整數(其中只有最後一個整數可以為0)後計算所有輸入的正整數總和(負數不加進總和)。
+輸入：1 2 3 4 5 0，輸出：15
+```cpp
+#include <stdio.h>
+int main()
+{
+	int sum=0;
+	while(1)
+	{
+		int n;
+		scanf("%d",&n);
+		if(n==0) break;
+		if(n>0) sum+=n;
+	}
+	printf("%d",sum);
+}
+```
+## 13 整數最大值、最小值
+題目內容：請設計一個程式，該程式可自鍵盤輸入一個由數字所組成字串(註解：空白相隔及非0數字)，並由0結尾。
+請在程式中設計一個名為Func的函數(方法)，該函數可接受一個如上述的字串並將該字串中所有的整數由小而大重新排列並印出如下所述的結果[最小值,最大值] 。
+輸入：1 5 4 3 2 0時，輸出：[1,5]
+```cpp
+#include <stdio.h>
+int main()
+{
+	int max=-99999,min=99999;
+	while(1)
+	{
+		int n;
+		scanf("%d",&n);
+		if(n==0) break;
+		if(n>max) max=n;
+		if(n<min) min=n;
+	}
+	printf("[%d,%d]",min,max);
+}
+```
