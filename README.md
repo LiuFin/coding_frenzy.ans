@@ -25,16 +25,15 @@ int main(){
 #include <stdio.h>
 int main()
 {
-	int a,b,c,d,temp;
+	int a,b;
 	scanf("%d%d",&a,&b);
-	c=a;
-	d=b;
-	while(c%=d){
-		temp=c;
-		c=d;
-		d=temp;
+	for(int i=a;i>=1;i--){
+		if(a%i==0 && b%i==0){
+			a=a/i;
+			b=b/i;
+		}
 	}
-	printf("%d %d\n",a/d,b/d);
+	printf("%d %d\n",a,b);
 }
 ```
 ## 03 讀入整數反序列印
@@ -42,15 +41,14 @@ int main()
 數字範圍：整數 1 – 1000
 ```cpp
 #include <stdio.h>
-int main()
-{
-	int a[10],i=0,b=1;
-	while(b)
-	{
-		scanf("%d",&b);
-		if(b!=0)a[i++]=b;
+int main(){
+	int a[10],n=0;
+	for(int i=0;i<10;i++){
+		scanf("%d",&a[i]);
+		if(a[i]==0) break;
+		n++;
 	}
-	while(i--){
+	for(int i=n-1;i>=0;i--){
 		printf("%d ",a[i]);
 	}
 	printf("\n");
@@ -735,51 +733,214 @@ int main(){
 }
 ```
 # 基礎題 2
-## 01 找零錢
-假設有50元、10元、5元和1元等4種硬幣，請輸入一個金額，並顯示等同於該金額所需的最少硬幣組合。
+## 01 計算餘數
+輸入兩個整數a b，輸出a除以b的餘數
 ```cpp
 #include <stdio.h>
-int main()
-{
-	int n;
-	scanf("%d",&n);
-	printf("%d=50*%d+10*%d+5*%d+1*%d",n,n/50,n%50/10,n%50%10/5,n%50%10%5);
+int main(){
+	int a,b;
+	scanf("%d%d",&a,&b);
+	printf("%d",a%b);
 }
 ```
-## 02 分式化簡
-輸入分式的分子及分母(分母不可為0)，將其化簡後的分式輸出。 
-數字範圍：整數1 – 10000 
+## 02 計算餘數及列印
+撰寫一個程式，要求使用者輸入兩個數字(變數名稱分別為x,y)，再從使用者取得這兩個數字，x為被除數，y為除數，然後印出計算後的餘數(remainder)。 
+```cpp
+#include <stdio.h>
+int main(){
+	int a,b;
+	printf("Enter two numbers: ");
+	scanf("%d%d",&a,&b);
+	printf("The remainder is %d\n",a%b);
+}
+```
+## 03 判別正方形
+撰寫一個程式要求使用者輸入矩形的長與寬，然後讀進這兩個整數。假如長與寬相同則印出訊息「It is a square」，否則印出訊息「It is not a square」。
+只能使用本章所學到的單一if敘述式。 
 ```cpp
 #include <stdio.h>
 int main()
 {
 	int a,b;
 	scanf("%d%d",&a,&b);
-	for(int i=a;i>=1;i--){
-		if(a%i==0 && b%i==0){
-			a=a/i;
-			b=b/i;
-		}
-	}
-	printf("%d %d\n",a,b);
+	if(a==b) printf("Enter two numbers:  It is a square ");
+	else printf("Enter two numbers:  It is not a square ");
 }
 ```
-## 03 讀入整數反序列印
-設計一個程式，該程式可以連續讀入正整數(輸入0表示結束，至多不超過10個正整數)，之後將所輸入的正整數以相反序顯示在畫面上。 
-數字範圍：整數 1 – 1000 
+## 04 分開整數的每個數字
+撰寫一個程式，輸入一個五位數的數字，將這個數字分成個別的數字，然後分別印出每個數字，數字中間必須相隔3個空格。
+輸入：42139，輸出： 4 2 1 3 9
+```cpp
+#include <stdio.h>
+int main()
+{
+	char c[5];
+	scanf("%s",&c);
+	printf("%c   %c   %c   %c   %c",c[0],c[1],c[2],c[3],c[4]);
+}
+```
+## 05 將一連串整數相乘
+請撰寫一個會將一連串整數相乘的程式。假定以scanf所讀取的第一個整數，是用於指出接下來要輸入的數值的個數。
+你的程式每執行一次scanf，必須只能讀取一個數值。
+輸入：3 20 50 12，輸出：Enter the number of values to be processed: Enter a value: Enter a value: Enter a value: Product of the 3 values is 12000
 ```cpp
 #include <stdio.h>
 int main(){
-	int a[10],n=0;
-	for(int i=0;i<10;i++){
-		scanf("%d",&a[i]);
-		if(a[i]==0) break;
-		n++;
+	int n,m,sum=1;
+	printf("Enter the number of values to be processed: ");
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		printf("Enter a value: ");
+		scanf("%d",&m);
+		sum*=m;
 	}
-	for(int i=n-1;i>=0;i--){
-		printf("%d ",a[i]);
-	}
-	printf("\n");
+	printf("Product of the %d values is %d",n,sum);
 }
 ```
-## 04 
+## 06 我們與惡的距離
+輸入一個整數，輸出該整數與2的距離。
+```cpp
+#include <stdio.h>
+int main(){
+	int n;
+	scanf("%d",&n);
+	printf("%d",n-2);
+}
+```
+## 07 平年月份的天數
+輸入一個整數N，輸出平年中N月的天數。
+```cpp
+#include <stdio.h>
+int main(){
+	int n,a[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+	scanf("%d",&n);
+	printf("%d",a[n-1]);
+}
+```
+## 08 整數二元四則運算
+輸入兩個整數 a 與 b 及其 中間的四則運算子 c，輸出其運算結果。
+```cpp
+#include <stdio.h>
+int main(){
+	int a,b;
+	char c;
+	scanf("%d %c %d",&a,&c,&b);
+	if(c=='+') printf("%d",a+b);
+	if(c=='-') printf("%d",a-b);
+	if(c=='*') printf("%d",a*b);
+	if(c=='/') printf("%d",a/b);
+}
+```
+## 09 字元判別
+輸入一個字元，若其為大寫字母則輸出U，若其為小寫字母則輸出L，若其為數字則輸出D，若為其他則輸出O。
+```cpp
+#include <stdio.h>
+int main(){
+	char c;
+	scanf("%c",&c);
+	if(c>='A' && c<='Z') printf("U");
+	else if(c>='a' && c<='z') printf("L");
+	else if(c>='0' && c<='9') printf("D");
+	else printf("O");
+}
+```
+## 10 幾日為星期幾
+假設某月的1號為星期日，請讀入日數，並找出對應的星期數(週日以0表示，週一以1表示，以此類推，至週六以6表示)。
+```cpp
+#include <stdio.h>
+int main(){
+	int n;
+	scanf("%d",&n);
+	if(n%7==1) printf("0");
+	else if(n%7==2) printf("1");
+	else if(n%7==3) printf("2");
+	else if(n%7==4) printf("3");
+	else if(n%7==5) printf("4");
+	else if(n%7==6) printf("5");
+	else if(n%7==0) printf("6");
+}
+```
+## 11 零錢總額
+假設有50元、5元和1元等3種硬幣，請分別輸入三種硬幣的數量(分別讀入50元、5元、1元硬幣的數量)，計算出這些硬幣的總額。
+```cpp
+#include <stdio.h>
+int main(){
+	int a,b,c;
+	scanf("%d%d%d",&a,&b,&c);
+	printf("%d",a*50+b*5+c);
+}
+```
+## 12 數字之首
+輸入一個整數N，請找出這個數字的首位數。
+```cpp
+#include <stdio.h>
+int main(){
+	int n,m;
+	scanf("%d",&n);
+	while(n!=0){
+		m=n%10;
+		n/=10;
+	}
+	printf("%d",m);
+}
+```
+## 13 兩數平方差
+讀取兩變數a與b之值，計算出a^2-b^2之值
+```cpp
+#include <stdio.h>
+int main(){
+	int a,b;
+	scanf("%d%d",&a,&b);
+	printf("%d",(a+b)*(a-b));
+}
+```
+## 14 剩餘啤酒有幾手又幾瓶
+假設購買啤酒瓶數有p瓶，喝掉d手（一手六瓶）後，試回答共剩幾手啤酒又幾瓶？
+```cpp
+#include <stdio.h>
+int main(){
+	int n,m;
+	scanf("%d%d",&n,&m);
+	printf("%d %d",(n-(m*6))/6,(n-(m*6))%6);
+}
+```
+## 15 輸出從0到N的偶數
+輸入一正整數Ｎ後，利用迴圈概念輸出所有0～N內的偶數
+```cpp
+#include <stdio.h>
+int main(){
+	int n;
+	scanf("%d",&n);
+	for(int i=2;i<=n;i++){
+		if(i%2==0) printf("%d ",i);
+	}
+}
+```
+## 16 三數最小
+寫一方法能接受三個正整數，並回傳其最小值
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,c,temp;
+	scanf("%d%d%d",&a,&b,&c);
+	if(a<b){temp=a;a=b;b=temp;}
+	if(b<c){temp=b;b=c;c=temp;}
+	if(a<c){temp=a;a=c;c=temp;}
+	printf("%d\n",c);
+}
+```
+## 17 計算立方值
+依序輸入六個整數，輸出六個數的立方值。
+```cpp
+#include <stdio.h>
+int main(){
+	int n;
+	for(int i=0;i<6;i++){
+		scanf("%d",&n);
+		printf("%d\n",n*n*n);
+	}
+}
+```
+# 進階題 3
+## 01 
