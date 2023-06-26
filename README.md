@@ -352,3 +352,49 @@ int main()
 	printf("%d\n",a/b);
 }
 ```
+## 08 兩數間可被5整除的整數
+輸入兩個整數，找出兩數之間所有可以被5整除的整數。 
+數字範圍：2個整數1 – 10000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,temp;
+	scanf("%d%d",&a,&b);
+	if(a>b){
+		temp=a;
+		a=b;
+		b=temp;
+	}
+	for(int i=a;i<=b;i++){
+		if(i%5==0)printf("%d\n",i);
+	}
+}
+```
+## 09 整數間最大距整數間最大距離
+輸入3個相異整數，找出整數間最大的距離。 
+數字範圍：整數1 – 10000 
+```cpp
+#include <stdio.h>
+int main()
+{
+	int a,b,c,temp;
+	scanf("%d%d%d",&a,&b,&c);
+	if(a<c){
+		temp=a;
+		a=c;
+		c=temp;
+	}
+	if(b<c){
+		temp=b;
+		b=c;
+		c=temp;
+	}
+	if(a<b){
+		temp=a;
+		a=b;
+		b=temp;
+	}
+	printf("%d\n",a-c);
+}
+```
